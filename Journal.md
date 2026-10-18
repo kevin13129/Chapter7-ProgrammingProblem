@@ -1,4 +1,4 @@
 # Journal
-## Phase 2
+## Phase 3
 
-For the All-Clear, I used the same ports and list of users from the emergency to make sure everything was restored correctly. I can see how this could become a problem in a bigger system because there would be so many things to keep track of manually. If we had thousands of ports and users, it would be easy to miss something or accidentally restore the wrong account.
+I noticed that Main is a lot simpler now because instead of calling every security method individually, it just calls one method from the Facade. This makes the All-Clear process easier since the Facade already knows what needs to be restored. If we changed the network controller to another vendor, Main wouldn't need to change as long as the Facade still provides the same commands.

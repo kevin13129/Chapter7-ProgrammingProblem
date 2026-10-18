@@ -1,32 +1,41 @@
 
-import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        NetworkTrafficController network = new NetworkTrafficController();
-        UserAccessManager users = new UserAccessManager();
-        EncryptionService encryption = new EncryptionService();
+        Scanner scanner = new Scanner(System.in);
 
-        List<String> accounts = List.of(
-                "admin_temp",
-                "guest_user_1",
-                "service_acct"
-        );
+        LegacyFirewall firewall = new LegacyFirewall();
+        SecurityLog security = new FirewallAdapter(firewall);
+        CommandCenterFacade commandCenter = new CommandCenterFacade();
 
-        System.out.println("=== EMERGENCY BREACH ===");
+        System.out.print("Enter security event: ");
+        String event = scanner.nextLine();
 
-        network.blockPort(8080);
-        network.blockPort(443);
-        users.lockUserAccounts(accounts);
-        encryption.encryptDatabase("Customer_Records");
-        network.divertTraffic();
+        System.out.print("Enter severity level: ");
+        int severity = scanner.nextInt();
 
-        System.out.println("=== ALL CLEAR ===");
+        security.logEvent(event);
+        security.setSeverity(severity);
 
-        network.unblockPort(8080);
-        network.unblockPort(443);
-        users.unlockUserAccounts(accounts);
-        encryption.decryptDatabase("Customer_Records");
+        System.out.println("\nChoose an action:");
+        System.out.println("1. Lockdown");
+        System.out.println("2. Lift Lockdown");
+        System.out.println("3. Maintenance");
+
+        int choice = scanner.nextInt();
+
+        if (choice == 1) {
+            commandCenter.initiateEmergencyLockdown();
+        } else if (choice == 2) {
+            commandCenter.liftEmergencyLockdown();
+        } else if (choice == 3) {
+            commandCenter.enableMaintenanceMode();
+        } else {
+            System.out.println("Invalid choice");
+        }
+
+        scanner.close();
     }
 }
