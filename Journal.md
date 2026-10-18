@@ -1,4 +1,4 @@
 # Journal
-## Phase 1
+## Phase 2
 
-From what I understand, the Adapter Pattern allows the dashboard to communicate with an older firewall without needing to know how its methods work. Instead of changing the LegacyFirewall class, the adapter translates the calls for us. This follows the Principle of Least Knowledge because the dashboard only needs to know about the SecurityLog interface, making it easier to work with different devices.
+For the All-Clear, I used the same ports and list of users from the emergency to make sure everything was restored correctly. I can see how this could become a problem in a bigger system because there would be so many things to keep track of manually. If we had thousands of ports and users, it would be easy to miss something or accidentally restore the wrong account.
